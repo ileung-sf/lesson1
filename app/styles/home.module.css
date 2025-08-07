@@ -1,50 +1,256 @@
+/* Vintage Computer Interface - Control Panel Style */
+
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2rem;
+  padding: 20px;
+  background: 
+    linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,248,248,0.8) 50%, rgba(240,240,240,0.9) 100%),
+    url('/playground/clouds.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border: 4px solid #000000;
+  font-family: 'Courier New', monospace;
+  min-height: calc(100vh - 40px);
+  position: relative;
+}
+
+/* Remove Ken Burns effects for retro style */
+.container::before,
+.container::after {
+  display: none;
 }
 
 .header {
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 3px solid #000000;
+  background: #ffffff;
+  padding: 15px;
+  position: relative;
+}
+
+/* Control Panel title bar */
+.header::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  height: 25px;
+  background: #000000;
+  z-index: 1;
 }
 
 .header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin: 0;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+  line-height: 25px;
+  background: #000000;
+  margin: -15px -15px 15px -15px;
+  padding: 0;
+}
+
+/* Subtitle area */
+.header::after {
+  content: 'IDA\0027S PROTOTYPES';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .card {
-  padding: 1.5rem;
-  border-radius: var(--border-radius);
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  background: #ffffff;
+  border: 3px solid #000000;
+  padding: 15px;
+  transition: none;
   text-decoration: none;
-  color: inherit;
+  color: #000000;
   cursor: pointer;
   display: block;
+  position: relative;
+  border-radius: 0;
+  box-shadow: none;
+  animation: none;
+  font-family: 'Courier New', monospace;
+}
+
+/* Inset button effect */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border: 2px solid #000000;
+  pointer-events: none;
+  background: none;
+  opacity: 1;
+  transform: none;
+  transition: none;
+  animation: none;
+}
+
+/* Dithered pattern backgrounds for variety */
+.card:nth-child(1) {
+  background-image: 
+    radial-gradient(circle at 2px 2px, #000000 1px, transparent 1px);
+  background-size: 8px 8px;
+  background-color: #ffffff;
+}
+
+.card:nth-child(2) {
+  background-image: 
+    linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%),
+    linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+  background-color: #ffffff;
+}
+
+.card:nth-child(3) {
+  background-image: 
+    linear-gradient(90deg, #000000 50%, transparent 50%);
+  background-size: 2px 2px;
+  background-color: #ffffff;
 }
 
 .card:hover {
-  background: rgba(0, 0, 0, 0.04);
-  transform: translateY(-2px);
+  background: #000000;
+  color: #ffffff;
+  transform: none;
+  animation: none;
+  box-shadow: none;
+  border-color: #000000;
+}
+
+.card:hover::before {
+  border-color: #ffffff;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+/* Invert dithered patterns on hover */
+.card:nth-child(1):hover {
+  background-image: 
+    radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 1px);
+  background-color: #000000;
+}
+
+.card:nth-child(2):hover {
+  background-image: 
+    linear-gradient(45deg, #ffffff 25%, transparent 25%, transparent 75%, #ffffff 75%),
+    linear-gradient(45deg, #ffffff 25%, transparent 25%, transparent 75%, #ffffff 75%);
+  background-color: #000000;
+}
+
+.card:nth-child(3):hover {
+  background-image: 
+    linear-gradient(90deg, #ffffff 50%, transparent 50%);
+  background-color: #000000;
 }
 
 .card h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+  line-height: 1.2;
 }
 
 .card p {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  line-height: 1.6;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  line-height: 1.4;
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+
+/* Add some vintage UI elements */
+.header h1::before {
+  content: '◆ ';
+  font-size: 14px;
+}
+
+.header h1::after {
+  content: ' ◆';
+  font-size: 14px;
+}
+
+/* Status indicators */
+.card h3::before {
+  content: '▶ ';
+  font-size: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    border-width: 3px;
+  }
+  
+  .header {
+    padding: 12px;
+  }
+  
+  .header h1 {
+    font-size: 16px;
+    margin: -12px -12px 12px -12px;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .card {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  
+  .card h3 {
+    font-size: 13px;
+  }
+  
+  .card p {
+    font-size: 11px;
+  }
 } 
